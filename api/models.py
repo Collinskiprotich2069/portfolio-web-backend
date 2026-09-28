@@ -1,7 +1,7 @@
 from django.db import models
     
 class Skills(models.Model):
-    image  = models.ImageField(upload_to='images/')
+    image  = models.ImageField(upload_to='skills_images')
     name = models.CharField(max_length=70)
     
     def __str__(self):
@@ -13,7 +13,7 @@ class Skills(models.Model):
         
 class Projects(models.Model):
     name = models.CharField(max_length=50)
-    image = models.ImageField(default='project image',upload_to='images/project_images')
+    image = models.ImageField(default='project image',upload_to='project_images')
     description = models.TextField()
     
     class Meta:
