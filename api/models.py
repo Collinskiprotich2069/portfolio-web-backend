@@ -23,3 +23,14 @@ class Projects(models.Model):
     def __str__(self):
         return self.name
     
+class ProfileImages(models.Model):
+    first = models.ImageField(upload_to='profilepic')
+    second = models.ImageField(upload_to='profilepic')
+    third = models.ImageField(upload_to='profilepic')
+    
+    class Meta:
+        verbose_name = 'Profile Image'
+        verbose_name_plural = 'Profile Images '
+        
+    def __str__(self):
+        return 'Profile Images'
