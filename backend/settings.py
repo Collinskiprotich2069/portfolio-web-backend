@@ -18,8 +18,11 @@ SECRET_KEY = 'django-insecure-hj#)-uxyu-)!yak6p@sieu)rb&!vu$d!k#jrfsk)ny^+)04c#k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
 
+ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ["https://*.onrender.com"]
+
+SECRET_KEY  =os.getenv("z@1k6q5dn17z8&jpv%7qgh3*ixzdmm4+&&s2zcjdf1#*!u$-k#")
 
 # Application definition
 
@@ -38,6 +41,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -123,6 +127,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 # Default primary key field type
