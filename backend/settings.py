@@ -21,8 +21,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = ["https://*.onrender.com"]
-
-SECRET_KEY  =os.getenv("z@1k6q5dn17z8&jpv%7qgh3*ixzdmm4+&&s2zcjdf1#*!u$-k#")
+SECRET_KEY = "z@1k6q5dn17z8&jpv%7qgh3*ixzdmm4+&&s2zcjdf1#*!u$-k#"
+SECRET_KEY  =os.getenv(SECRET_KEY)
 
 # Application definition
 
