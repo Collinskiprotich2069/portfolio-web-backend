@@ -21,9 +21,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = ["https://*.onrender.com"]
-SECRET_KEY = "z@1k6q5dn17z8&jpv%7qgh3*ixzdmm4+&&s2zcjdf1#*!u$-k#"
-SECRET_KEY  =os.getenv(SECRET_KEY)
 
+SECRET_KEY  = os.getenv( "z@1k6q5dn17z8&jpv%7qgh3*ixzdmm4+&&s2zcjdf1#*!u$-k#")
+if not SECRET_KEY:
+    raise Exception("SECRET_KEY is missing ..Add is to env variables")
 # Application definition
 
 INSTALLED_APPS = [
@@ -94,9 +95,8 @@ tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
 
 DATABASES = {
     'default': dj_database_url.config(
-        default = os.getenv("DATABASE_URL"),
-    conn_max_age = 600,
-    ssl_require = True,    
+        default = os.getenv('DATABASE_URL'),
+        conn_max_age = 600,    
     )
 }
 
