@@ -22,7 +22,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = ["https://*.onrender.com"]
 
-SECRET_KEY  = os.getenv( "z@1k6q5dn17z8&jpv%7qgh3*ixzdmm4+&&s2zcjdf1#*!u$-k#")
+SECRET_KEY  = os.getenv( "unpg+kr233x(4bh2=59xd830=+ajgd3=tlf&vim$bbo_pg!8vm")
 if not SECRET_KEY:
     raise Exception("SECRET_KEY is missing ..Add is to env variables")
 # Application definition
@@ -52,10 +52,6 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',
-    'http://127.0.0.1:5173',
-]
 
 ROOT_URLCONF = 'backend.urls'
 
