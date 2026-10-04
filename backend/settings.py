@@ -22,11 +22,11 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = ["https://*.onrender.com"]
 
-SECRET_KEY  = os.getenv( "unpg+kr233x(4bh2=59xd830=+ajgd3=tlf&vim$bbo_pg!8vm")
-if not SECRET_KEY:
+SECRET_KEY  = os.getenv(SECRET_KEY)
+'''if not SECRET_KEY:
     raise Exception("SECRET_KEY is missing ..Add is to env variables")
 # Application definition
-
+'''
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -52,6 +52,10 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
+]
 
 ROOT_URLCONF = 'backend.urls'
 
