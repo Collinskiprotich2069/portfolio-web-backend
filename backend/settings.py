@@ -26,7 +26,7 @@ SECRET_KEY  = os.getenv( 'SECRET_KEY')
 if not SECRET_KEY:
     raise Exception("SECRET_KEY is missing ..Add is to env variables")
 # Application definition'''
-
+DATABASE_URL = os.getenv('DATABASE_URL')
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
