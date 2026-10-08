@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'cloudinary_storage',
     'cloudinary',
-    'cloudinary.contrib.staticfiles'
+
 ]
 
 CLOUDINARY_STOGARE = {
