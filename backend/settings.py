@@ -38,13 +38,14 @@ INSTALLED_APPS = [
     'api',
     'corsheaders',
     'cloudinary_storage',
-    'cloudinary'
+    'cloudinary',
+    'cloudinary.contrib.staticfiles'
 ]
 
 CLOUDINARY_STOGARE = {
-    'CLOUD_NAME': 'tmb7aloa',
-    'API_KEY': '866748348142682',
-    'API_SECRET': 'hRXvSP8n8QKEg9mL6v_7-GkCK9Q'
+    'CLOUD_NAME': os.environ.get('CLOUD_NAME'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.getenv.get('CLOUDINARY_API_SECRET')
 }
 
 DEFAULT_FILE_STORAGE =  'cloudinary_storage.storage.MediaCloudinaryStorage'
