@@ -48,7 +48,7 @@ CLOUDINARY_STOGARE = {
     'API_SECRET': os.getenv('CLOUDINARY_API_SECRET')
 }
 
-DEFAULT_FILE_STORAGE =  'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
