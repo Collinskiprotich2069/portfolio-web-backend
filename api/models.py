@@ -4,6 +4,7 @@ class Skills(models.Model):
     image  = models.ImageField(upload_to='skills_images')
     name = models.CharField(max_length=70)
     
+  
     def __str__(self):
         return f'{self.name}'  
     
