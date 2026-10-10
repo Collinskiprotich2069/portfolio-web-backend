@@ -15,6 +15,7 @@ from rest_framework.views import APIView
 from rest_framework import  status
     
 class ProfileImagesView(APIView):
+   
     def get(self,request):
         model = ProfileImages.objects.all()
         serializer = ProfileImagesSerializer(model, many=True)

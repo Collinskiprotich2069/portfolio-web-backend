@@ -7,10 +7,14 @@ from . models import (
 
 
 class ProfileImagesSerializer(serializers.ModelSerializer):
+    image_url = serializers.SerializerMethodField()
     class Meta:
         model= ProfileImages
-        fields = '__all__'
+        fields = 'image_url'
         
+        
+    def get_image_url(self,obj):
+        return obj.image.url
   
         
         
