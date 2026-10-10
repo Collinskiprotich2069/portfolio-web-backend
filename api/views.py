@@ -17,7 +17,7 @@ from rest_framework import  status
 class ProfileImagesView(APIView):
     def get(self,request):
         model = ProfileImages.objects.all()
-        serializer = ProfileImagesSerializer(model, many=True,context={'request': request})
+        serializer = ProfileImagesSerializer(model, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
     
@@ -26,7 +26,7 @@ class ProjectsView(APIView):
     
     def get(self, request):
         model = Projects.objects.all()
-        serializer = ProjectsSerializer(model, many=True, context={'request': request})
+        serializer = ProjectsSerializer(model, many=True)
         
         return Response(serializer.data, status=status.HTTP_200_OK)
     
@@ -34,7 +34,7 @@ class SkillsView(APIView):
     http_method_names = 'get'
     def get(self, request):
         skills = Skills.objects.all()
-        serializer = SkillsSerializer(skills, many=True,context={'request':request})
+        serializer = SkillsSerializer(skills, many=True)
         
         return Response(serializer.data, status=status.HTTP_200_OK)    
     
