@@ -10,7 +10,7 @@ class ProfileImagesSerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
     class Meta:
         model= ProfileImages
-        fields = 'image_url'
+        fields = ['image_url']
         
         
     def get_image_url(self,obj):
