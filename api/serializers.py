@@ -11,11 +11,7 @@ class ProfileImagesSerializer(serializers.ModelSerializer):
         model= ProfileImages
         fields = '__all__'
         
-    def get_image(self,obj):
-        request = self.context.get('request')
-        if obj.image:
-            return request.get_absolute_uri(obj.image.url)
-        return None
+  
         
         
 class ProjectsSerializer(serializers.ModelSerializer):
