@@ -33,8 +33,8 @@ class ProjectsView(APIView):
 class SkillsView(APIView):
     http_method_names = 'get'
     def get(self, request):
-        model = Skills.objects.all()
-        serializer = SkillsSerializer(model, many=True,context={'request':request})
+        skills = Skills.objects.all()
+        serializer = SkillsSerializer(skills, many=True,context={'request':request})
         
         return Response(serializer.data, status=status.HTTP_200_OK)    
     
