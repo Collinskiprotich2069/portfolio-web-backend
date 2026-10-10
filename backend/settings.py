@@ -19,8 +19,11 @@ DEBUG = True
 
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ["https://portfolio-web-backend-cl1f.onrender.com"]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://portfolio-web-backend-cl1f.onrender.com",
+    "https://collins-kiprotich.vercel.app",
+]
 #SECRET_KEY ="z@1k6q5dn17z8&jpv%7qgh3*ixzdmm4+&&s2zcjdf1#*!u$-k#"
 SECRET_KEY  = os.getenv( 'SECRET_KEY')
 if not SECRET_KEY:
