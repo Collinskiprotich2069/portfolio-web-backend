@@ -54,13 +54,6 @@ INSTALLED_APPS = [
 
 ]
 
-'''CLOUDINARY_STORAGE = {
-    'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL'),
-    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
-    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET')
-}'''
-
 
 
 MIDDLEWARE = [
@@ -108,17 +101,6 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
-'''DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': tmpPostgres.path.replace('/',''),
-        'USER': tmpPostgres.username,
-        'PASSWORD':tmpPostgres.password,
-        'HOST': tmpPostgres.hostname,
-        'PORT': 5432,
-    }
-}
-'''
 
 DATABASES = {
     'default': dj_database_url.config(

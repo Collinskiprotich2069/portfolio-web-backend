@@ -35,3 +35,14 @@ class ProfileImages(models.Model):
         
     def __str__(self):
         return 'Profile Images'
+
+
+
+class Resume(models.Model):
+    document = models.FileField(upload_to='resume')
+
+    def __str__(self):
+        return f'Resume version {self.id}'
+
+    def get_absolute_url(self):
+        return reverse('resume', ags)
