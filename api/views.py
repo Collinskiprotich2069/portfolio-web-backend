@@ -13,11 +13,13 @@ from rest_framework import status
 import json
 from django.http import JsonResponse
 from django.conf import settings
-#from django.views.decorators.csrf import csrf_exempt
+
+# from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import send_mail
 import logging
 
 logger = logging.getLogger(__name__)
+
 
 class SendMessage(APIView):
     def post(self, request):
@@ -28,8 +30,8 @@ class SendMessage(APIView):
 
             send_mail(
                 subject=f"Portfolio message from {first_name} {last_name}",
-                message = f"Message: {message}",
-                from_email = settings.DEFAULT_FROM_EMAIL,
+                message=f"Message: {message}",
+                from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=[settings.EMAIL_HOST_USER],
                 fail_silently=False,
             )
@@ -38,8 +40,8 @@ class SendMessage(APIView):
 
         except Exception as e:
             return Response(
-                {"success": False, "error": str(e)}, 
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+                {"success": False, "error": str(e)},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
 
 
@@ -71,7 +73,7 @@ class SkillsView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-''' @csrf_exempt
+""" @csrf_exempt
 def send_message_email(api_request):
     if api_request.method == "POST":
         try:
@@ -107,4 +109,4 @@ def send_message_email(api_request):
         except Exception as e:
             return JsonResponse({"error": str(e)}, status=500)
     return JsonResponse({"error": "Invalid request method."}, status=405)
-''''
+"""
