@@ -15,6 +15,9 @@ from django.http import JsonResponse
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import send_mail
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class ProfileImagesView(APIView):
@@ -49,10 +52,15 @@ class SkillsView(APIView):
 def send_message_email(api_request):
     if api_request.method == "POST":
         try:
+            logger.info("Request recieved")
+
             data = json.loads(api_request.body)
             first_name = data.get("first_name")
             last_name = data.get("last_name")
+
             message = data.get("message")
+
+            logger.info("Before send_email")
 
             if not first_name or not last_name or not message:
                 return JsonResponse({"error": "All fields are required."}, status=400)
@@ -69,6 +77,8 @@ def send_message_email(api_request):
                 ["collinskiprotich754@gmail.com"],
                 fail_silently=False,
             )
+
+            logger.info("After send_email")
 
             return JsonResponse({"success": "Email sent successfully!"}, status=200)
         except Exception as e:
