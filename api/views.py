@@ -46,10 +46,10 @@ class SkillsView(APIView):
 
 
 @csrf_exempt
-def send_message_email(request):
-    if request.method == "POST":
+def send_message_email(api_request):
+    if api_request.method == "POST":
         try:
-            data = json.loads(request.body)
+            data = json.loads(api_request.body)
             first_name = data.get("first_name")
             last_name = data.get("last_name")
             message = data.get("message")
