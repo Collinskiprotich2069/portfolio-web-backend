@@ -19,6 +19,28 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+class SendMessage(APIView):
+    def post(self, request):
+        try:
+            first_name = request.data.get("first_name")
+            last_name = request.data.get("last_name")
+            message = request.data.get("message")
+
+            send_mail(
+                subject=f"Portfolio message from {first_name} {last_name}"
+                message = f"Message: {message}",
+                from_email = settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[settings.EMAIL_HOST_USER],
+                fail_silently=False,
+            )
+
+            return Response({"success": True})
+
+        except Exception as e:
+            return Response(
+                {"success": False, "erro": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+
 
 class ProfileImagesView(APIView):
 
