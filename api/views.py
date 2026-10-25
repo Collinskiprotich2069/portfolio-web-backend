@@ -6,7 +6,7 @@ from .serializers import (
 )
 from .models import Projects, Skills, ProfileImages
 from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework.views import APIView, csrf_exempt
 from rest_framework import status
 
 
@@ -20,7 +20,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-
+'''
 class SendMessage(APIView):
     def post(self, request):
         try:
@@ -46,7 +46,7 @@ class SendMessage(APIView):
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
 
-
+'''
 class ProfileImagesView(APIView):
 
     def get(self, request):
@@ -75,8 +75,8 @@ class SkillsView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-""" @csrf_exempt
-def send_message_email(api_request):
+@csrf_exempt
+def send_email(api_request):
     if api_request.method == "POST":
         try:
             logger.info("Request recieved")
@@ -111,4 +111,3 @@ def send_message_email(api_request):
         except Exception as e:
             return JsonResponse({"error": str(e)}, status=500)
     return JsonResponse({"error": "Invalid request method."}, status=405)
-"""
