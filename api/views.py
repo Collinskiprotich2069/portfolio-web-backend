@@ -28,11 +28,13 @@ class SendMessage(APIView):
             last_name = request.data.get("last_name")
             message = request.data.get("message")
 
+            subject = (f"Portfolio message from {first_name} {last_name}",)
+            message = (f"Message: {message}",)
             send_mail(
-                subject=f"Portfolio message from {first_name} {last_name}",
-                message=f"Message: {message}",
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=[settings.EMAIL_HOST_USER],
+                subject,
+                message,
+                settings.DEFAULT_FROM_EMAIL,
+                [settings.RECIPIENT_EMAIL],
                 fail_silently=False,
             )
 

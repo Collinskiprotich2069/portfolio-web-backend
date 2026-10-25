@@ -1,9 +1,9 @@
 from pathlib import Path
 import os
-from dotenv import load_dotenv
 from urllib.parse import urlparse, parse_qsl
 import dj_database_url
 
+from dotenv import load_dotenv
 load_dotenv()
 
 import cloudinary
