@@ -104,7 +104,7 @@ ANYMAIL = {
 }
 DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", "Portfolio Website  <onboarding@resend.dev")
 
-RECIPIENT_EMAIL = os.emviron.get("RECIPIENT_EMAIL")
+RECIPIENT_EMAIL = os.environ.get("RECIPIENT_EMAIL")
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
