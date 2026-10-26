@@ -89,6 +89,8 @@ def send_email(api_request):
 
             logger.info("Before send_email")
 
+            recipient = settings.RECIPIENT_EMAIL
+
             if not first_name or not last_name or not message:
                 return JsonResponse({"error": "All fields are required."}, status=400)
 
@@ -98,10 +100,10 @@ def send_email(api_request):
 
             # Send email funtion
             send_mail(
-                subject,
-                email_message,
-                settings.DEFAULT_FROM_EMAIL,
-                ["collinskiprotich754@gmail.com"],
+                subject=subject,
+                message=email_message,
+                from_email = None,
+                recipient_list=[recipient],
                 fail_silently=False,
             )
 
