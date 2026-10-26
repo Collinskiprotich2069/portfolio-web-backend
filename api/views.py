@@ -76,19 +76,16 @@ class SkillsView(APIView):
 
 
 @csrf_exempt
-def send_email(api_request):
-    if api_request.method == "POST":
+def send_email(request):
+    if request.method == "POST":
         try:
             logger.info("Request recieved")
 
-            data = json.loads(api_request.body)
+            data = json.loads(request.body)
             first_name = data.get("first_name")
             last_name = data.get("last_name")
 
             message = data.get("message")
-
-            logger.info("Before send_email")
-
             recipient = settings.RECIPIENT_EMAIL
 
             if not first_name or not last_name or not message:
@@ -106,9 +103,6 @@ def send_email(api_request):
                 recipient_list=[recipient],
                 fail_silently=False,
             )
-
-            logger.info("After send_email")
-
             return JsonResponse({"success": "Email sent successfully!"}, status=200)
         except Exception as e:
             return JsonResponse({"error": str(e)}, status=500)
