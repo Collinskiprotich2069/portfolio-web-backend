@@ -102,6 +102,7 @@ ANYMAIL = {
     "RESEND_API_KEY": os.getenv("RESEND_API_KEY")
 
 }
+RESEND_API_KEY = os.getenv("RESEND_API_KEY")
 DEFAULT_FROM_EMAIL = os.environ.get("Portfolio Website  <onboarding@resend.dev>")
 
 RECIPIENT_EMAIL = os.environ.get("RECIPIENT_EMAIL")
