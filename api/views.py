@@ -13,14 +13,17 @@ from rest_framework import status
 import json
 from django.http import JsonResponse
 from django.conf import settings
-
+import os 
+import requests
 # from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import send_mail
 import logging
 
 logger = logging.getLogger(__name__)
-
-'''
+import resend
+from rest_framework.permissions import AllowAny
+from rest_framework.decorators import api_view, permission_classes
+"""
 class SendMessage(APIView):
     def post(self, request):
         try:
@@ -46,7 +49,9 @@ class SendMessage(APIView):
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
 
-'''
+"""
+
+
 class ProfileImagesView(APIView):
 
     def get(self, request):
@@ -74,36 +79,36 @@ class SkillsView(APIView):
 
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-
-@csrf_exempt
+resend.api_key = os.getenv("RESEND_API_KEY")
+@api_view(['POST'])
+@permission_classes([AllowAny])
 def send_email(request):
     if request.method == "POST":
-        try:
-            logger.info("Request recieved")
-
             data = json.loads(request.body)
             first_name = data.get("first_name")
             last_name = data.get("last_name")
-
             message = data.get("message")
+
+          
+            if not all([first_name,last_name,message]):
+                return JsonResponse({'Error': "Please fill out all fields"}, status=status.HTTP_400_BAD_REQUEST)
+        
             recipient = settings.RECIPIENT_EMAIL
 
-            if not first_name or not last_name or not message:
-                return JsonResponse({"error": "All fields are required."}, status=400)
 
             # Composing the email
             subject = f"New Contact Message from {first_name} {last_name}"
             email_message = f"Name: {first_name} {last_name}\n\nMessage:\n{message}"
 
             # Send email funtion
-            send_mail(
-                subject=subject,
-                message=email_message,
-                from_email = None,
-                recipient_list=[recipient],
-                fail_silently=False,
-            )
-            return JsonResponse({"success": "Email sent successfully!"}, status=200)
-        except Exception as e:
-            return JsonResponse({"error": str(e)}, status=500)
-    return JsonResponse({"error": "Invalid request method."}, status=405)
+            try:
+                resend.Emails.send({
+                    "from": "onboarding@resend.dev",
+                    "to": recipient,
+                    "subject": subject,
+                    "text": email_message
+                })
+                
+                return JsonResponse({"success": "Message sent successfully!"}, status=status.HTTP_200_OK)
+            except Exception as e:
+                return JsonResponse({"error": f"Something went wrong: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
