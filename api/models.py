@@ -30,7 +30,8 @@ class ProfileImages(models.Model):
     first = models.ImageField(upload_to="profilepic")
     second = models.ImageField(upload_to="profilepic")
     third = models.ImageField(upload_to="profilepic")
-
+    link = models.URLField(max_length=200, blank=True)
+    
     class Meta:
         verbose_name = "Profile Image"
         verbose_name_plural = "Profile Images "
