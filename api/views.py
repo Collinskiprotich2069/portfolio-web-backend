@@ -97,8 +97,8 @@ def send_email(request):
 
 
             # Composing the email
-            subject = f"New Contact Message from{email}"
-            email_message = f"Name: {first_name} {last_name}\n\nMessage:\n{message}"
+            subject = f"New Contact Message from {first_name} {last_name}"
+            email_message = f"Name: {first_name} {last_name}\nEmail: {email} \n\n Message:\t{message}"
 
             # Send email funtion
             try:
