@@ -88,7 +88,7 @@ def send_email(request):
             first_name = data.get("first_name")
             last_name = data.get("last_name")
             message = data.get("message")
-
+            email = data.get("email")
           
             if not all([first_name,last_name,message]):
                 return JsonResponse({'Error': "Please fill out all fields"}, status=status.HTTP_400_BAD_REQUEST)
@@ -97,7 +97,7 @@ def send_email(request):
 
 
             # Composing the email
-            subject = f"New Contact Message from {first_name} {last_name}"
+            subject = f"New Contact Message from{email}"
             email_message = f"Name: {first_name} {last_name}\n\nMessage:\n{message}"
 
             # Send email funtion
